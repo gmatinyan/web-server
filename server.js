@@ -2,16 +2,7 @@ var express = require('express');
 var app = express();
 var PORT = 3000;
 
-var middlewear = {
-	requireAuthentication: function (req, res, next) {
-		console.log('private route hit!');
-		next();
-	},
-	logger: function (req, res, next) {
-		console.log('Request: ' + new Date().toString() + ' ' + req.method + ' ' + req.originalUrl);
-		next();
-	}
-};
+var middlewear = require('./middlewear.js');
 
 app.use(middlewear.logger);
 //app.use(middlewear.requireAuthentication);
