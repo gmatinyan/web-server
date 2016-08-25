@@ -1,13 +1,12 @@
 var express = require('express');
 var app = express();
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
+var middleware = require('./middleware.js');
 
-var middlewear = require('./middlewear.js');
+app.use(middleware.logger);
+//app.use(middleware.requireAuthentication);
 
-app.use(middlewear.logger);
-//app.use(middlewear.requireAuthentication);
-
-app.get('/about', middlewear.requireAuthentication, function(req, res) {
+app.get('/about', middleware.requireAuthentication, function(req, res) {
 	res.send('About Us!');
 });
 
